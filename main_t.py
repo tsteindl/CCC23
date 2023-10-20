@@ -28,8 +28,8 @@ def check_same_island(map, c1, c2):
 
 
 if __name__ == '__main__':
-    path = "in/level2/level2_1.in"
-    out_path = "out/level2/level2_1.out"
+    path = "in/level2/level2_5.in"
+    out_path = "out/level2/level2_5.out"
     with open(path, 'r') as f:
         res = ""
 
