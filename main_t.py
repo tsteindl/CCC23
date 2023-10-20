@@ -6,3 +6,5 @@ if __name__ == '__main__':
         map, coords = parse(f.read())
         print(map)
         print(coords)
+        for i, j in coords:
+            print(map[i][j])
