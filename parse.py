@@ -1,18 +1,18 @@
 def parse(input):
     lines = input.splitlines()
     map = []
-    size = lines.pop()
+    size = int(lines.pop(0))
 
     for i in range(size):
-        line = lines.pop()
+        line = lines.pop(0)
         row = []
         for j in range(size):
-            row.insert(line[i])
-        map.insert(row)
+            row.append(line[j])
+        map.append(row)
 
-    N = lines.pop()
+    N = int(lines.pop(0))
     coords = []
     for i in range(N):
-        line = lines.pop()
-        coords.insert([line[0], line[1]])
+        line = lines.pop(0).split(",")
+        coords.append([int(line[0]), int(line[1])])
     return map, coords
