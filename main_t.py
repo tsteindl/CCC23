@@ -1,15 +1,35 @@
 from parse import parse
 
+
+def search(map, visited, next_v, goal):
+    res = "DIFFERENT"
+    while (len(next_v) > 0):
+        c = next_v.pop(0)
+        if c[0] >= len(map) or c[1] >= len(map[0]):
+            continue
+        if c in visited:
+            continue
+        if map[c[0]][c[1]] == "W":
+            continue
+        if c == goal:
+            res = "SAME"
+        visited.append(c)
+        next_v = ([[c1[0] + 1,c1[1]], [c1[0],c1[1] + 1], [c1[0] - 1,c1[1]], [c1[0],c1[1] - 1]]) + next_v
+        search(map, visited, next_v, goal)
+    return res
+
+
 def check_same_island(map, c1, c2):
     visited = []
-    next_visit = []
+    next_v = [c1]
 
-    next_visit.append([map[c1[0] + 1][c1[1]], map[c1[0]][c1[1] + 1], map[c1[0] - 1][c1[1]], map[c1[0]][c1[1] - 1]])
+    res = search(map, visited, next_v, c2)
+    return res
 
 
 if __name__ == '__main__':
-    path = "in/level2/level2_1.in"
-    out_path = "out/level2/level2_1.out"
+    path = "in/level2/level2_example.in"
+    out_path = "out/level2/level2_example.out"
     with open(path, 'r') as f:
         res = ""
 
