@@ -26,6 +26,25 @@ def check_same_island(map, c1, c2):
     res = search(map, visited, next_v, c2)
     return res
 
+def get_diag(c):
+    return [c[0] + 1, c[1] + 1], [c[0] - 1, c[1] - 1], [c[0] + 1, c[1] - 1], [c[0] - 1, c[1] + 1]
+
+def get_adj(c):
+    return [c[0] + 1, c[1]], [c[0] - 1, c[1]], [c[0], c[1] - 1], [c[0], c[1] + 1]
+def check_route(map, route):
+    res = "VALID"
+    visited = []
+    for c in route:
+        for v in visited:
+            if v == c:
+                return "INVALID"
+            # for d in get_diag(v):
+            #     if d in visited:
+            #         return "INVALID"
+            if [c[0] + 1, c[1]] in visited and [c[0] + 1, c[1]] in visited
+
+        visited.append(c)
+    return res
 
 if __name__ == '__main__':
     path = "in/level3/level3_example.in"
@@ -36,8 +55,10 @@ if __name__ == '__main__':
         map, coords = parse(f.read())
         print(map)
         print(coords)
-        for c1,c2 in coords:
-            res += check_same_island(map, c1, c2)
+            # res += check_same_island(map, c1, c2)
+        for route in coords:
+            res += check_route(map, route) + "\n"
+        print(res)
         # for i, j in coords:
         #     res += (map[i][j]) + "\n"
 
