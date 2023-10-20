@@ -25,6 +25,21 @@ def first_task():
             for (row, col) in colist:
                 f.write(f'{map[row][col]}\n')
 
+def second_task():
+    in_folder = 'in//level2/'
+    out_folder = 'out//level2'
+
+    file_list = ['level2_example.in','level2_1.in', 'level2_2.in', 'level2_3.in', 'level2_4.in', 'level2_5.in']
+    file_example = 'in//level1//level2_example.in'
+    print(os.path.exists(file_example))
+
+    for file in file_list:
+        print(os.path.join(in_folder, file))
+        map, colist = open_file(os.path.join(in_folder, file))
+        with open(os.path.join(out_folder, f'{file}.out'), 'w') as f:
+            for ((row1, col1), (row2, col2)) in colist:
+
+
 
 if __name__ == '__main__':
     first_task()
