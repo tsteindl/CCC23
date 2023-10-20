@@ -15,8 +15,8 @@ def parse(input):
     for i in range(N):
         line = lines.pop(0).split(" ")
         for coord in line:
-            c1, c2 = coord.split(",")
+            c = coord.split(",")
             coords.append([
-                [int(c1[1]), int(c1[0])],
+                int(c[1]), int(c[0])
             ])
     return map, coords
