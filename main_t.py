@@ -30,6 +30,7 @@ def check_same_island(map, c1, c2):
 def find_route(map, start, end):
     res = []
     visited = []
+    # prev = [] #stack that contains the previous routes, must be cleaned up on erroneuous path
     next_v = [{
         "c": start,
         "parent": None
@@ -53,7 +54,7 @@ def unwrap_route(r):
     while r["parent"] != None:
         res.append(r["c"])
         r = r["parent"]
-    return reversed(res)
+    return list(reversed(res))
 
 def get_adjacent(c):
     return [
@@ -83,6 +84,20 @@ def check_route(map, route):
         visited.append(c)
     return res
 
+def vis_route(map, route, start=None, end=None):
+    print("Route: \n")
+    for i, row in enumerate(map):
+        for j, col in enumerate(row):
+            if start and i == start[0] and j == start[1]:
+                print("S ", end="")
+            elif end and i == end[0] and j == end[1]:
+                print("E ", end="")
+            elif [i, j] in route:
+                print("R ", end="")
+            else:
+                print(col + " ", end="")
+        print()
+
 
 if __name__ == '__main__':
     path = "in/level4/level4_example.in"
@@ -90,12 +105,17 @@ if __name__ == '__main__':
     with open(path, 'r') as f:
         res = ""
         map, coords = parse(f.read())
-        print(map)
+        # print(map)
+        for row in map:
+            for col in row:
+                print(col + " ", end="")
+            print()
         print(coords)
         for route in coords:
-            # res += check_route(map, route) + "\n"
+            pass
             node = find_route(map, route[0], route[1])
             route = unwrap_route(node)
+            vis_route(map, route, route[0], route[1])
             res += [f"{c[1]},{c[0]}" for c in route] + "\n"
 
         print(res)
